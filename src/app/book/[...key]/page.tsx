@@ -79,7 +79,17 @@ export default async function BookDetailPage({
   }
 
   const { userId } = await auth();
-  const coverId = work.covers?.[0];
+
+  // Try Works API covers first, fall back to Supabase cached cover_i
+  let coverId = work.covers?.find((c) => c > 0) ?? null;
+  if (!coverId) {
+    const { data: dbBook } = await supabaseAdmin
+      .from("books")
+      .select("cover_i")
+      .eq("id", workKey)
+      .single();
+    coverId = dbBook?.cover_i ?? null;
+  }
   const coverUrl = coverId
     ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg`
     : null;

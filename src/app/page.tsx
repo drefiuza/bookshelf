@@ -2,6 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import { supabaseAdmin } from "@/lib/supabase-server";
 import { HomeSearchBar } from "@/components/home-search";
 import { BookTabs } from "@/components/book-tabs";
+import { RealtimeRefresh } from "@/components/realtime-refresh";
 import type { Book, BookWithFavoriteCount, OpenLibraryDoc } from "@/lib/types";
 
 async function getTrendingBooks(): Promise<Book[]> {
@@ -65,6 +66,7 @@ export default async function Home() {
 
   return (
     <div>
+      <RealtimeRefresh />
       {/* Hero with search */}
       <section className="relative overflow-hidden bg-gradient-to-b from-stone-900 to-stone-800">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(120,53,15,0.15),transparent_70%)]" />

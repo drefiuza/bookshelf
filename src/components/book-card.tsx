@@ -7,12 +7,10 @@ export function BookCard({
   book,
   isFavorited,
   favoriteCount,
-  showFavoriteButton,
 }: {
   book: Book;
   isFavorited: boolean;
   favoriteCount?: number;
-  showFavoriteButton: boolean;
 }) {
   const coverUrl = book.cover_i
     ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`
@@ -58,13 +56,11 @@ export function BookCard({
           )}
         </div>
       </Link>
-      {showFavoriteButton && (
-        <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity z-10">
-          <div className="bg-white/90 backdrop-blur-sm rounded-full p-1 shadow-sm">
-            <FavoriteButton book={book} initialFavorited={isFavorited} />
-          </div>
+      <div className="absolute top-2 right-2 z-10">
+        <div className="bg-white/80 backdrop-blur-sm rounded-full p-1.5 shadow-md">
+          <FavoriteButton book={book} initialFavorited={isFavorited} />
         </div>
-      )}
+      </div>
     </div>
   );
 }

@@ -1,14 +1,12 @@
 "use client";
 
-import { useState, createContext, useContext } from "react";
+import { useState } from "react";
 import { BookCard } from "@/components/book-card";
 import type { Book, OpenLibraryDoc } from "@/lib/types";
 
 export function HomeSearchBar({
-  isSignedIn,
   initialFavoriteIds,
 }: {
-  isSignedIn: boolean;
   initialFavoriteIds: string[];
 }) {
   const [query, setQuery] = useState("");
@@ -124,7 +122,6 @@ export function HomeSearchBar({
                         key={book.id}
                         book={book}
                         isFavorited={favoriteSet.has(book.id)}
-                        showFavoriteButton={isSignedIn}
                       />
                     ))}
                   </div>

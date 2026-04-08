@@ -18,12 +18,10 @@ export function BookTabs({
   classBooks,
   trending: initialTrending,
   userFavoriteIds,
-  isSignedIn,
 }: {
   classBooks: BookWithFavoriteCount[];
   trending: Book[];
   userFavoriteIds: string[];
-  isSignedIn: boolean;
 }) {
   const [tab, setTab] = useState<"favorites" | "discover">(
     classBooks.length > 0 ? "favorites" : "discover"
@@ -126,7 +124,6 @@ export function BookTabs({
                   book={book}
                   isFavorited={favoriteSet.has(book.id)}
                   favoriteCount={book.favorite_count}
-                  showFavoriteButton={isSignedIn}
                 />
               ))}
             </div>

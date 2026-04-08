@@ -3,6 +3,7 @@ import { supabaseAdmin } from "@/lib/supabase-server";
 import { HomeSearchBar } from "@/components/home-search";
 import { BookTabs } from "@/components/book-tabs";
 import { RealtimeRefresh } from "@/components/realtime-refresh";
+import { PendingFavorites } from "@/components/pending-favorites";
 import type { Book, BookWithFavoriteCount, OpenLibraryDoc } from "@/lib/types";
 
 async function getTrendingBooks(): Promise<Book[]> {
@@ -67,6 +68,7 @@ export default async function Home() {
   return (
     <div>
       <RealtimeRefresh />
+      <PendingFavorites />
       {/* Hero with search */}
       <section className="relative overflow-hidden bg-gradient-to-b from-stone-900 to-stone-800">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(120,53,15,0.15),transparent_70%)]" />
@@ -80,7 +82,6 @@ export default async function Home() {
             </p>
             <div className="mt-6 w-full max-w-2xl">
               <HomeSearchBar
-                isSignedIn={!!userId}
                 initialFavoriteIds={userFavoriteIds}
               />
             </div>
@@ -93,7 +94,6 @@ export default async function Home() {
           classBooks={classBooks}
           trending={trending}
           userFavoriteIds={userFavoriteIds}
-          isSignedIn={!!userId}
         />
       </div>
     </div>

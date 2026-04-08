@@ -139,7 +139,6 @@ export function BookTabs({
                 key={`${book.id}-${i}`}
                 book={book}
                 isFavorited={favoriteSet.has(book.id)}
-                showFavoriteButton={isSignedIn}
               />
             ))}
           </div>
